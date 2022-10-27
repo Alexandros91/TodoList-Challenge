@@ -1,19 +1,17 @@
 class Todo
-  def initialize(task) # task is a string
-    # ...
-  end
 
-  def task
-    # Returns the task as a string
+  attr_reader :task
+
+  def initialize(task) # task is a string
+    @task = task
+    @todos_done = []
   end
 
   def mark_done!
-    # Marks the todo as done
-    # Returns nothing
+    @todos_done << @task
   end
 
   def done?
-    # Returns true if the task is done
-    # Otherwise, false
+   @todos_done.include?(@task) ? true : false
   end
 end
