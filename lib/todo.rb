@@ -4,14 +4,14 @@ class Todo
 
   def initialize(task) # task is a string
     @task = task
-    @todos_done = []
+    @done = false
   end
 
   def mark_done!
-    @todos_done << @task
+    @done = true
   end
 
   def done?
-   @todos_done.include?(@task) ? true : false
+    return @done
   end
 end

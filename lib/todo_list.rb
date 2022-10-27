@@ -1,7 +1,6 @@
 class TodoList
   def initialize
-    @list = []
-    @completed_todos = []
+   @list = []
   end
 
   def add(todo) 
@@ -9,30 +8,20 @@ class TodoList
   end
 
   def incomplete
-    # @list.map do |todo|
-    #   if todo.done? == true
-    #     @list.delete(todo)
-    #   end
-    # end
+    return @list.reject do |task|
+      task.done?
+    end
   end
 
   def complete
-    @list.map do |todo|
-      if todo.done? == true
-        @completed_todos << todo.mark_done!
-      end
+    return @list.select do |task|
+      task.done?
     end
-    return @completed_todos.flatten.uniq
   end
 
   def give_up!
-    @list.map do |todo|
-      @completed_todos << todo.mark_done!
-    end
-    if @completed_todos.flatten.uniq.empty?
-      return []
-    else
-      return @completed_todos.flatten.uniq
+    return @list.map do |task|
+      task.mark_done!
     end
   end
 end

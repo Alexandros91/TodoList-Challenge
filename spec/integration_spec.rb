@@ -23,14 +23,14 @@ RSpec.describe 'integration' do
   end
  
   describe '#incomplete' do
-    xit 'returns the todo as incomplete' do
+    it 'returns the todo as incomplete' do
       todo_list = TodoList.new
       todo_1 = Todo.new("Water the plants")
       todo_list.add(todo_1)
-      expect(todo_list.incomplete).to eq ["Water the plants"]
+      expect(todo_list.incomplete).to eq [todo_1]
     end
 
-    xit 'returns all the non-done todos' do
+    it 'returns all the non-done todos' do
       todo_list = TodoList.new
       todo_1 = Todo.new("Water the plants")
       todo_2 = Todo.new("Walk the dog")
@@ -40,7 +40,7 @@ RSpec.describe 'integration' do
       todo_list.add(todo_3)
       todo_1.mark_done!
       todo_2.mark_done!
-      expect(todo_list.incomplete).to eq ["Wash the dishes"]
+      expect(todo_list.incomplete).to eq [todo_3]
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe 'integration' do
         todo_1 = Todo.new("Water the plants")
         todo_list.add(todo_1)
         todo_1.mark_done!
-        expect(todo_list.complete).to eq ["Water the plants"]
+        expect(todo_list.complete).to eq [todo_1]
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe 'integration' do
         todo_list.add(todo_3)
         todo_1.mark_done!
         todo_2.mark_done!
-        expect(todo_list.complete).to eq ["Water the plants", "Walk the dog"]
+        expect(todo_list.complete).to eq [todo_1, todo_2]
       end
     end
   end
@@ -98,10 +98,10 @@ RSpec.describe 'integration' do
       todo_list.add(todo_2)
       todo_list.add(todo_3)
       todo_list.give_up!
-      expect(todo_list.complete).to eq ["Water the plants", "Walk the dog", "Wash the dishes"]
+      expect(todo_list.complete).to eq [todo_1, todo_2, todo_3]
     end
 
-    xit 'marks no task as incomplete' do
+    it 'marks no task as incomplete' do
       todo_list = TodoList.new
       todo_1 = Todo.new("Water the plants")
       todo_2 = Todo.new("Walk the dog")
